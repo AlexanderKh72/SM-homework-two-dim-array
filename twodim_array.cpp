@@ -6,30 +6,30 @@
 
 const int N_COL{ 5 }, N_ROW{ 10 }, W{ 4 };
 
-void create(int**& a)
+void create(int**& a, int n_row, int n_col)
 {
-    a = new int* [N_ROW];
-    for (int i = 0; i < N_ROW; ++i)
-        a[i] = new int[N_COL];
+    a = new int* [n_row];
+    for (int i = 0; i < n_row; ++i)
+        a[i] = new int[n_col];
 }
 
-void fill(int* const* a)
+void fill(int* const* a, int n_row, int n_col)
 {
-    for (int i = 0; i < N_ROW; ++i)
-        for (int j = 0; j < N_COL; ++j)
+    for (int i = 0; i < n_row; ++i)
+        for (int j = 0; j < n_col; ++j)
             a[i][j] = i + j;
 }
 
-void print(int const* const* a)
+void print(int const* const* a, int n_row, int n_col)
 {
-    for (int i = 0; i < N_ROW; ++i, std::cout << std::endl)
-        for (int j = 0; j < N_COL; ++j)
+    for (int i = 0; i < n_row; ++i, std::cout << std::endl)
+        for (int j = 0; j < n_col; ++j)
             std::cout << std::setw(W) << a[i][j];
 }
 
-void clear(int** a)
+void clear(int** a, int n_row)
 {
-    for (int i = 0; i < N_ROW; ++i)
+    for (int i = 0; i < n_row; ++i)
         delete[] a[i];
     delete[] a;
 }
@@ -37,9 +37,9 @@ void clear(int** a)
 int main()
 {
     int** a;
-    create(a);
-    fill(a);
-    print(a);
-    clear(a);
+    create(a, N_ROW, N_COL);
+    fill(a, N_ROW, N_COL);
+    print(a, N_ROW, N_COL);
+    clear(a, N_ROW);
     return 0;
 }
